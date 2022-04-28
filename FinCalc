@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class FinCalc {
+    public static void main(String[] args) {
+
+        double balance; //Общи баланс
+        double creditMonth = 0; //Доходы за месяц
+        double debetMonth = 0; //Расходы за месяц
+        double debet1 = 0; //Обязательные расходы
+        double debet2 = 0; //Необязательные расходы
+
+
+        System.out.println("Ведите сумму баласна");
+        Scanner scanner = new Scanner(System.in);
+        balance = scanner.nextDouble(); //Запрос остатка баланса
+        System.out.println("Сумма вашего баланса "+balance);
+
+        while(true) {
+            System.out.println("1. Внести доход");
+            System.out.println("2. Внести расход");
+            System.out.println("3. Показать баланс");
+            System.out.println("4. Показать доходы за месяц");
+            System.out.println("5. Показать расзоды за месяц");
+            System.out.println("6. Показать обязательные расзоды");
+            System.out.println("7. Показать необязательные расзоды");
+            System.out.println("0. Выход");
+            int choice = scanner.nextInt(); //Выбор действия
+            if (choice == 1) {
+                System.out.println("Введите сумму");
+                double credit = scanner.nextDouble(); //Сумма дохода
+                creditMonth = creditMonth + credit; //Считаем доход за месяц
+                balance = balance + credit; //Общий баланс, прибавляем
+            } else if (choice == 2) {
+                System.out.println("Введите сумму");
+                double debet = scanner.nextDouble(); //Сумма расхода
+                debetMonth = debetMonth + debet; //Считаем расход за месяц
+                balance = balance - debet; //Общий баланс, отнимаем
+                while (true) {
+                    System.out.println("Укажите тип рассхода");
+                    System.out.println("1. Обязательный");
+                    System.out.println("2. Необязательный");
+                    int choice1 = scanner.nextInt(); //Выбор тапа расхода
+                    if (choice1 == 1) {
+                        debet1 = debet1 + debet;  //Считаем обязательный расход
+                        break;
+                    } else if (choice1 == 2) {
+                        debet2 = debet2 + debet;  //Считаем необязательный расход
+                        break;
+                    } else {
+                        System.out.println("Ошибка ввода");
+                    }
+                }
+            } else if (choice == 3) {
+                System.out.println("Баланс "+balance);
+            } else if (choice == 4) {
+                System.out.println("Доход за месяц "+creditMonth);
+            } else if (choice == 5) {
+                System.out.println("Расход за месяц "+debetMonth);
+            } else if (choice == 6) {
+                System.out.println("Обязательные расходы "+debet1);
+            } else if (choice == 7) {
+                System.out.println("Необязательные расходы "+debet2);
+            } else if (choice == 0) {
+                System.out.println("Выход");
+                break;
+            } else {
+                System.out.println("Ошибка ввода");
+            }
+        }
+    }
+}
